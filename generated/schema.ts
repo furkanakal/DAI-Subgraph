@@ -11,7 +11,7 @@ import {
   BigDecimal
 } from "@graphprotocol/graph-ts";
 
-export class ExampleEntity extends Entity {
+export class TokenTransfer extends Entity {
   constructor(id: string) {
     super();
     this.set("id", Value.fromString(id));
@@ -19,18 +19,18 @@ export class ExampleEntity extends Entity {
 
   save(): void {
     let id = this.get("id");
-    assert(id != null, "Cannot save ExampleEntity entity without an ID");
+    assert(id != null, "Cannot save TokenTransfer entity without an ID");
     if (id) {
       assert(
         id.kind == ValueKind.STRING,
-        `Entities of type ExampleEntity must have an ID of type String but the id '${id.displayData()}' is of type ${id.displayKind()}`
+        `Entities of type TokenTransfer must have an ID of type String but the id '${id.displayData()}' is of type ${id.displayKind()}`
       );
-      store.set("ExampleEntity", id.toString(), this);
+      store.set("TokenTransfer", id.toString(), this);
     }
   }
 
-  static load(id: string): ExampleEntity | null {
-    return changetype<ExampleEntity | null>(store.get("ExampleEntity", id));
+  static load(id: string): TokenTransfer | null {
+    return changetype<TokenTransfer | null>(store.get("TokenTransfer", id));
   }
 
   get id(): string {
@@ -42,30 +42,30 @@ export class ExampleEntity extends Entity {
     this.set("id", Value.fromString(value));
   }
 
-  get count(): BigInt {
-    let value = this.get("count");
+  get amount(): BigInt {
+    let value = this.get("amount");
     return value!.toBigInt();
   }
 
-  set count(value: BigInt) {
-    this.set("count", Value.fromBigInt(value));
+  set amount(value: BigInt) {
+    this.set("amount", Value.fromBigInt(value));
   }
 
-  get src(): Bytes {
-    let value = this.get("src");
+  get from(): Bytes {
+    let value = this.get("from");
     return value!.toBytes();
   }
 
-  set src(value: Bytes) {
-    this.set("src", Value.fromBytes(value));
+  set from(value: Bytes) {
+    this.set("from", Value.fromBytes(value));
   }
 
-  get guy(): Bytes {
-    let value = this.get("guy");
+  get to(): Bytes {
+    let value = this.get("to");
     return value!.toBytes();
   }
 
-  set guy(value: Bytes) {
-    this.set("guy", Value.fromBytes(value));
+  set to(value: Bytes) {
+    this.set("to", Value.fromBytes(value));
   }
 }

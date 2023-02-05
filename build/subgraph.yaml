@@ -1,6 +1,6 @@
 specVersion: 0.0.4
 schema:
-  file: ./schema.graphql
+  file: schema.graphql
 dataSources:
   - kind: ethereum
     name: Dai
@@ -16,8 +16,8 @@ dataSources:
         - TokenTransfer
       abis:
         - name: Dai
-          file: ./abis/Dai.json
+          file: Dai/abis/Dai.json
       eventHandlers:
         - event: Transfer(indexed address,indexed address,uint256)
           handler: handleTransfer
-      file: ./src/dai.ts
+      file: Dai/Dai.wasm
